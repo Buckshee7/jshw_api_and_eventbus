@@ -1,7 +1,13 @@
 <template>
     <div>
-        <p>{{ character.name }}</p>
-        <p>{{ character.species }}</p>
+        <div>
+            <img :src="character.image" :alt="`${character.name}'s image`">
+        </div>
+        <div>
+            <h3>{{ character.name }}</h3>
+            <p>Species: {{ character.species }}</p>
+            <p>Status: {{ character.status }}</p>
+        </div>
     </div>
 </template>
 

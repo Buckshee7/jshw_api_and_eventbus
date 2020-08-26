@@ -1,10 +1,13 @@
 <template>
-    <ul>
-        <select v-on:change="displayDetails" v-model="selectedCharacter">
-            <option disabled>Choose a character</option>
-            <option v-for="(character, index) in characters" :key="index" :value="character">{{ character.name }}</option>
-        </select>
-    </ul>
+    <div>
+        <h3>Matches:</h3>
+        <ul>
+            <select v-on:change="displayDetails" v-model="selectedCharacterFromList">
+                <option v-if="!selectedCharacter" disabled>Choose a character</option>
+                <option v-for="(character, index) in characters" :key="index" :value="character">{{ character.name }}</option>
+            </select>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -15,16 +18,16 @@ export default {
     name: 'character-list',
     data(){
         return{
-            selectedCharacter: null
+            selectedCharacterFromList: null
         }
     },
-    props: ['characters'],
+    props: ['characters', 'selectedCharacter'],
     components: {
         'character-select': CharacterSelect
     },
     methods: {
         displayDetails: function() {
-            eventBus.$emit('display-details', this.selectedCharacter)
+            eventBus.$emit('display-details', this.selectedCharacterFromList)
         }
     }
 }
